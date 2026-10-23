@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Remix SIAKAD Kuliah Online Daring MPI</title>
+    <meta name="description" content="Portal SIAKAD perkuliahan online Mata Kuliah Filsafat Ilmu Prodi Manajemen Pendidikan Islam (MPI 1), RPS, tugas individu PPT & video kelompok, absensi 16 pertemuan, dan portal dosen." />
+    <meta property="og:title" content="Remix SIAKAD Kuliah Online Daring MPI" />
+    <meta property="og:description" content="Portal SIAKAD perkuliahan online Mata Kuliah Filsafat Ilmu Prodi Manajemen Pendidikan Islam (MPI 1), RPS, tugas individu PPT & video kelompok, absensi 16 pertemuan, dan portal dosen." />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+    <script>
+      (function() {
+        // Mock WebSocket to completely prevent Vite HMR connection failures in AI Studio iframe
+        try {
+          function MockWebSocket(url, protocols) {
+            this.url = url || '';
+            this.protocols = protocols;
+            this.readyState = 1; // WebSocket.OPEN
+            this.binaryType = 'blob';
+            this.bufferedAmount = 0;
+            this.extensions = '';
+            this.protocol = '';
+            this._listeners = {};
+            this.onopen = null;
+            this.onclose = null;
+            this.onerror = null;
+            this.onmessage = null;
+
+            var self = this;
+            setTimeout(function() {
+              if (typeof self.onopen === 'function') {
+                try { self.onopen({ type: 'open', target: self }); } catch(e) {}
+              }
+              if (self._listeners['open']) {
+                self._listeners['open'].forEach(function(fn) {
+                  try { fn({ type: 'open', target: self }); } catch(e) {}
+                });
+              }
+            }, 0);
+          }
+
+          MockWebSocket.prototype.send = function() {};
+          MockWebSocket.prototype.close = function() {
+            this.readyState = 3; // CLOSED
+          };
+          MockWebSocket.prototype.addEventListener = function(type, fn) {
+            if (!this._listeners[type]) this._listeners[type] = [];
+            this._listeners[type].push(fn);
+          };
+          MockWebSocket.prototype.removeEventListener = function(type, fn) {
+            if (this._listeners[type]) {
+              this._listeners[type] = this._listeners[type].filter(function(cb) { return cb !== fn; });
+            }
+          };
+          MockWebSocket.prototype.dispatchEvent = function() { return false; };
+
+          MockWebSocket.CONNECTING = 0;
+          MockWebSocket.OPEN = 1;
+          MockWebSocket.CLOSING = 2;
+          MockWebSocket.CLOSED = 3;
+
+          window.WebSocket = MockWebSocket;
+        } catch (e) {}
+
+        // Suppress Vite HMR WebSocket errors, unhandled rejections, and browser console warnings in iframe
+        var isWsError = function(str) {
+          if (!str) return false;
+          var s = String(str).toLowerCase();
+          return (
+            s.indexOf('websocket') !== -1 ||
+            s.indexOf('closed without being opened') !== -1 ||
+            s.indexOf('ditutup tanpa dibuka') !== -1 ||
+            s.indexOf('gagal terhubung ke websocket') !== -1 ||
+            s.indexOf('network error') !== -1 ||
+            s.indexOf('[vite]') !== -1
+          );
+        };
+
+        window.addEventListener('unhandledrejection', function(event) {
+          var reason = event && event.reason ? (event.reason.message || String(event.reason)) : '';
+          if (isWsError(reason)) {
+            event.preventDefault();
+            if (event.stopImmediatePropagation) event.stopImmediatePropagation();
+            return false;
+          }
+        }, true);
+
+        window.addEventListener('error', function(event) {
+          var msg = (event && event.message) || (event && event.error && event.error.message) || '';
+          if (isWsError(msg)) {
+            event.preventDefault();
+            if (event.stopImmediatePropagation) event.stopImmediatePropagation();
+            return false;
+          }
+        }, true);
+
+        // Filter out Vite websocket errors from console.error/warn
+        var origConsoleError = console.error;
+        console.error = function() {
+          var args = Array.prototype.slice.call(arguments);
+          var joined = args.map(function(a) { return String((a && (a.message || a)) || ''); }).join(' ');
+          if (isWsError(joined)) return;
+          origConsoleError.apply(console, args);
+        };
+
+        var origConsoleWarn = console.warn;
+        console.warn = function() {
+          var args = Array.prototype.slice.call(arguments);
+          var joined = args.map(function(a) { return String((a && (a.message || a)) || ''); }).join(' ');
+          if (isWsError(joined)) return;
+          origConsoleWarn.apply(console, args);
+        };
+      })();
+    </script>
+  </head>
+  <body class="bg-slate-50 text-slate-900 antialiased selection:bg-emerald-500 selection:text-white min-h-screen">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+

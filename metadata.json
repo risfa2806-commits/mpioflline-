@@ -1,0 +1,10 @@
+{
+  "name": "Remix SIAKAD Kuliah Online Daring MPI",
+  "description": "Portal SIAKAD perkuliahan online Mata Kuliah Filsafat Ilmu Prodi Manajemen Pendidikan Islam (MPI 1), RPS, tugas individu PPT \u0026 video kelompok, absensi 16 pertemuan, dan portal dosen.",
+  "requestFramePermissions": [
+    "camera"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
